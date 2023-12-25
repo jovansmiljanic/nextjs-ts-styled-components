@@ -10,7 +10,6 @@ const commonSettings = {
   font: {
     size: 16,
     baseSize: 20,
-    family: "'Inconsolata', sans-serif",
     weight: {
       light: 300,
       regular: 400,
@@ -24,7 +23,7 @@ const commonSettings = {
     sm: 992,
     md: 992,
     lg: 1192,
-    xl: 1440,
+    xl: 1340,
   },
   spaces: {
     0: 0,
@@ -48,18 +47,21 @@ const defaultTheme: ThemeType = {
   colors: {
     white: "#FFFFFF",
     black: "#000000",
-    primary: "#208DD0",
+
+    primary: "#a37cfc",
     secondary: "#7A7DFF",
     success: "#37C864",
     danger: "#E04A5A",
     warning: "#FFA726",
-    textColor: "#222222",
-    lightGray: "#BDBDBD",
-    lighterGray: "#E0E0E0",
-    darkGray: "#404040",
-    hoverGray: "#4359710A",
-    background: "#f2f4fc",
+
+    background: "#f8f5ff",
+
+    textColorPrimary: "#1e1e1e",
+    textColorSecondary: "#8E989F",
+
     gray: "#64748B",
+    lightGray: "#BDBDBD",
+    darkGray: "#404040",
   },
 };
 
@@ -70,18 +72,21 @@ const darkTheme: ThemeType = {
   colors: {
     white: "#FFFFFF",
     black: "#000000",
-    primary: "#4BA3D9",
+
+    primary: "#a37cfc",
     secondary: "#7A7DFF",
     success: "#37C864",
     danger: "#E04A5A",
     warning: "#FFA726",
-    textColor: "#CBCBE2",
-    lightGray: "#A1A1A1",
-    lighterGray: "#BDBDBD",
-    darkGray: "#303030",
-    hoverGray: "#4359710A",
-    background: "#2D2D2D",
+
+    background: "#f8f5ff",
+
+    textColorPrimary: "#1e1e1e",
+    textColorSecondary: "#8E989F",
+
     gray: "#64748B",
+    lightGray: "#BDBDBD",
+    darkGray: "#404040",
   },
 };
 

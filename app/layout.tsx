@@ -1,11 +1,26 @@
-
-
 // Global styles
-import GlobalStyle from "globalStyles";
+import GlobalStyle from "@styles/globalStyles";
+
+// Fonts
+import { Comfortaa } from "next/font/google";
+
+// Providers
+import Providers from "providers";
+
+// Store context
+import { Store } from "@context";
 
 // Global context
 import { Layout } from "@components";
-import Providers from "providers";
+
+const comfortaa = Comfortaa({
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "App name",
+  description: "App description",
+};
 
 export default function RootLayout({
   children,
@@ -13,12 +28,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body >
+    <html className={comfortaa.className}>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>App name</title>
+      </head>
+
+      <body>
         <Providers>
           <GlobalStyle />
 
-          <Layout>{children}</Layout>
+          <Store>
+            <Layout>{children}</Layout>
+          </Store>
         </Providers>
       </body>
     </html>

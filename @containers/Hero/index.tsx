@@ -31,7 +31,7 @@ const index: FC<Hero> = () => {
         dolore fuga quas nihil vero voluptas, suscipit praesentium voluptates.
       </Heading>
 
-      <Button variant="primary">Click me</Button>
+      <Button $variant="primary">Click me</Button>
     </Hero>
   );
 };

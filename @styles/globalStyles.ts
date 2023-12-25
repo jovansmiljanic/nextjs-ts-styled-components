@@ -82,16 +82,15 @@ const GlobalStyle = createGlobalStyle<{ theme?: ThemeType }>`
     ${({
       theme: {
         colors,
-        font: { size, family, weight },
+        font: { size, weight },
       },
     }) => css`
       font-style: normal;
       font-feature-settings: "kern";
       font-size: ${size}px;
       background-color: ${colors.white};
-      color: ${colors.textColor};
+      color: ${colors.textColorPrimary};
       line-height: ${size * 1.5}px;
-      font-family: ${family};
       font-weight: ${weight["medium"]};
 
       strong {

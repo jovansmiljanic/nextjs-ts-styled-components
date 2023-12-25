@@ -5,77 +5,70 @@ import styled, { css } from "styled-components";
 
 // Global types
 import {
-  Colors,
-  FontWeights,
-  TextAlign as TextAligntype,
-  Breakpoints,
   PaddingTypes,
+  FontWeights,
+  Colors,
+  TextAlign,
+  Breakpoints,
   Spaces,
 } from "@types";
 
-interface TextAlign {
-  xs?: TextAligntype;
-  sm?: TextAligntype;
-  md?: TextAligntype;
-  lg?: TextAligntype;
-  xl?: TextAligntype;
-}
-
 interface HeadingProps {
-  weight?: FontWeights;
-  padding?: PaddingTypes;
-  textAlign?: TextAlign;
+  $weight?: FontWeights;
+  $padding?: PaddingTypes;
+  $textAlign?: Partial<Record<Breakpoints, TextAlign>>;
   color?: Colors;
 }
 
-const generatePaddingCSS = (
-  padding: PaddingTypes,
-  spaces: Record<Spaces, number>,
-  breakpoints: Record<Breakpoints, number>
-) =>
-  Object.entries(padding)
-    .map(
-      ([bp, spaceTypes]) =>
-        css`
-          @media (${bp === "sm" ? "max" : "min"}-width: ${breakpoints[
-              bp as Breakpoints
-            ]}) {
-            ${Object.entries(spaceTypes)
-              .map(([side, space]) => `padding-${side}: ${spaces[space]}px;`)
-              .join("\n")}
-          }
-        `
-    )
-    .join("");
+const generatePaddingStyles = (
+  $padding: PaddingTypes,
+  breakpoints: Record<Breakpoints, number>,
+  spaces: Record<Spaces, number>
+) => {
+  return Object.entries($padding).map(([breakpoint, spaceTypes]) => {
+    const breakpointSize = breakpoints[breakpoint as Breakpoints];
+    return css`
+      @media (${breakpoint === "sm"
+          ? "max"
+          : "min"}-width: ${breakpointSize}px) {
+        ${Object.entries(spaceTypes)
+          .map(
+            ([direction, space]) =>
+              `padding-${direction}: ${spaces[space as Spaces]}px;`
+          )
+          .join(" ")}
+      }
+    `;
+  });
+};
 
-const generateTextAlignCSS = (
-  textAlign: TextAlign,
+const generateTextAlignStyles = (
+  textAlign: Partial<Record<Breakpoints, TextAlign>>,
   breakpoints: Record<Breakpoints, number>
-) =>
-  Object.entries(textAlign)
-    .map(
-      ([bp, align]) =>
-        css`
-          @media (${bp === "sm" ? "max" : "min"}-width: ${breakpoints[
-              bp as Breakpoints
-            ]}) {
-            text-align: ${align};
-          }
-        `
-    )
-    .join("");
+) => {
+  return Object.entries(textAlign).map(([breakpoint, align]) => {
+    const breakpointSize = breakpoints[breakpoint as Breakpoints];
+    return css`
+      @media (${breakpoint === "sm"
+          ? "max"
+          : "min"}-width: ${breakpointSize}px) {
+        text-align: ${align};
+      }
+    `;
+  });
+};
 
 const Heading = styled.h1<HeadingProps>`
   ${({
-    weight,
+    $weight,
     color,
-    textAlign,
-    padding,
+    $textAlign,
+    $padding,
     theme: { font, colors, spaces, breakpoints },
   }) => css`
-    ${padding && generatePaddingCSS(padding, spaces, breakpoints)}
-    ${textAlign && generateTextAlignCSS(textAlign, breakpoints)}
-    ${weight && `font-weight: ${font.weight[weight]};`}
+    ${$padding && generatePaddingStyles($padding, breakpoints, spaces)}
+    ${$textAlign && generateTextAlignStyles($textAlign, breakpoints)}
+    ${$weight && `font-weight: ${font.weight[$weight]};`}
     ${color && `color: ${colors[color]};`}
   `}
 `;

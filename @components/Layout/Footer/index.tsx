@@ -13,7 +13,7 @@ const Footer = styled.div`
 interface Footer {}
 
 const index: FC<Footer> = () => {
-  return <Footer></Footer>;
+  return <Footer>Footer</Footer>;
 };
 
 export { index as Footer };

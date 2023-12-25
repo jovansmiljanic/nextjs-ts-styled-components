@@ -1,9 +1,6 @@
+// Global containers
 import { Hero } from "@containers";
 
-export default function Home() {
-  return (
-    <div>
-      <Hero />
-    </div>
-  );
+export default function Page() {
+  return <Hero />;
 }

@@ -10,22 +10,24 @@ export interface ThemeType {
   colors: {
     white: string;
     black: string;
+
     primary: string;
     secondary: string;
     success: string;
     danger: string;
     warning: string;
-    textColor: string;
+
+    background: string;
+
+    textColorPrimary: string;
+    textColorSecondary: string;
+
+    gray: string;
     lightGray: string;
     darkGray: string;
-    lighterGray: string;
-    hoverGray: string;
-    background: string;
-    gray: string;
   };
   font: {
     size: number;
-    family: string;
     baseSize: number;
     weight: {
       light: number;
